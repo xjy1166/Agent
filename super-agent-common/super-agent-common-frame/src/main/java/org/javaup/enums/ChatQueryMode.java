@@ -1,0 +1,44 @@
+package org.javaup.enums;
+
+/**
+
+ * @description: 枚举定义
+
+ **/
+
+public enum ChatQueryMode {
+
+    DOCUMENT(1, "当前文档问答"),
+
+    AUTO_DOCUMENT(3, "自动知识问答"),
+
+    OPEN_CHAT(2, "开放式提问");
+
+    private final int code;
+    private final String label;
+
+    ChatQueryMode(int code, String label) {
+        this.code = code;
+        this.label = label;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public static ChatQueryMode fromCode(Integer code) {
+        if (code == null) {
+            throw new IllegalArgumentException("提问模式 code 不能为空");
+        }
+        for (ChatQueryMode mode : values()) {
+            if (mode.code == code) {
+                return mode;
+            }
+        }
+        throw new IllegalArgumentException("未知的提问模式 code: " + code);
+    }
+}
